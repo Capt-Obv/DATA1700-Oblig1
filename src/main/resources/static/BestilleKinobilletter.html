@@ -14,20 +14,20 @@ Velg film:
     <option>Oppenheimer</option>
 </select>
 <br /><br />
-Antall: <input type="number" id="antall">
+Antall: <input type="number" id="antall"><div id="antallError"></div>
 <br/><br/>
 <table>
     <tr>
-        <td>Fornavn</td><td><input type="text" id="fornavn"></td>
+        <td>Fornavn</td><td><input type="text" id="fornavn"></td><td><div id="fornavnError"></div> </td>
     </tr>
     <tr>
-        <td>Etternavn</td><td><input type="text" id="etternavn"></td>
+        <td>Etternavn</td><td><input type="text" id="etternavn"></td><td><div id="etternavnError"></div></td>
     </tr>
     <tr>
-        <td>Telefonnr</td><td><input type="text" id="telefonnr" ></td>
+        <td>Telefonnr</td><td><input type="text" id="telefonnr" ></td><td><div id="telfonnrError"></div></td>
     </tr>
     <tr>
-        <td>Epost</td><td><input type="text" id="epost"></td>
+        <td>Epost</td><td><input type="text" id="epost"></td><td><div id="epostError"></div> </td>
     </tr>
 </table>
 <button value="Kjøp bilett" onclick="kjopBilett();" id="bilett">Kjøp bilett</button>
