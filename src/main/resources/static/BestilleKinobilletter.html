@@ -2,9 +2,38 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Bestille Kinobiller</title>
 </head>
 <body>
-
+<h1>Bestilling av kinobiletter</h1>
+<br /><br />
+Velg film:
+<select id="velgFilm" onchange="velgFilm();">
+    <option>Barbie Movie</option>
+    <option>Oppenheimer</option>
+</select>
+<br /><br />
+Antall: <input type="number" id="antall">
+<br/><br/>
+<table>
+    <tr>
+        <td>Fornavn</td><td><input type="text" id="fornavn"></td>
+    </tr>
+    <tr>
+        <td>Etternavn</td><td><input type="text" id="etternavn"></td>
+    </tr>
+    <tr>
+        <td>Telefonnr</td><td><input type="text" id="telefonnr" ></td>
+    </tr>
+    <tr>
+        <td>Epost</td><td><input type="text" id="epost"></td>
+    </tr>
+</table>
+<button value="Kjøp bilett" onclick="kjopBilett();" id="bilett">Kjøp bilett</button>
+<br/><br />
+<h3>Alle biletter</h3>
+<div id="alleBilletter"></div>
+<br/><br/>
+<button value="Slett alle biletter" onclick="slettBiletter();" id="slett">Slett alle biletter</button>
 </body>
 </html>
