@@ -1,18 +1,20 @@
-
+let count = 0;
 const biletter = [];
 function kjopBilett(){
     let error = false;
-    let inputFilm = $("#velgFilm");
-    var option = inputFilm.options[inputFilm.selectedIndex].value;
-    inputFilm = inputFilm.val();
-
+    let inputFilm = $("#velgFilm").val();
+    //var option = inputFilm.options[inputFilm.selectedIndex].value;
+    //inputFilm = inputFilm.val();
+/*
     if(option === 0){
         //må skirve feilmelding her!
         error = true;
     }
+
+ */
     let inputAntall = $("#antall").val();
 
-    if(antall < 0 || isNaN(antall)){
+    if(inputAntall <=0 || isNaN(inputAntall)){
         $("#antallError").html("Antall må være ett positivt nummer!").css('color','red');
         error = true;
     }
@@ -40,8 +42,13 @@ function kjopBilett(){
         $("#epostError").html("Må skrive noe i epost").css('color', 'red');
         error = true;
     }
-
-    if(error) return;
+    /*
+    let tableContainer = $("biletter");
+    //if(error) return;
+    if(biletter.length === 0){
+        tableContainer.innerHTML = generateTableHead();
+    }
+    */
 
     let billet = {
         film : inputFilm,
@@ -52,18 +59,68 @@ function kjopBilett(){
         epost : inputEpost
     };
     biletter.push(billet);
-    tableContainer = $("alleBilletter");
-    tableContainer.innerHTML = generateTable();
+    let input = Object.values(billet);
+    const tabell = document.querySelector("div.bilettTabell");
+    if(count === 0){
+        creatTableHead(tabell);
+        newRow(input, tabell);
 
+        count++;
+    }
+    else {
+        newRow(input, tabell);
+    }
+
+    //tableContainer.innerHTML = leggTilBilett(billet);
 }
 
+const header = ["Film", 'Antall', 'Fornavn', 'Etternavn', 'Telefonnr', 'Epost'];
+const creatTableHead= (tabell,bilett) => {
+    if(count === 0){
+    let table = document.createElement('table');
+    table.className = 'table';
+
+    let tableHead = document.createElement('thead');
+    tableHead.className = 'tableHead';
+
+    let tableHeaderRow = document.createElement('tr');
+    tableHeaderRow.className = 'tableHeaderRow';
+
+    header.forEach(header => {
+        let scoreHeader = document.createElement('th');
+        scoreHeader.innerText = header;
+        tableHeaderRow.append(scoreHeader);
+    })
+
+    tableHead.append(tableHeaderRow);
+    table.append(tableHead);
+
+    let tableBody = document.createElement('tbody');
+    tableBody.className = "table-Body";
+
+    tabell.append(table);
+}
+/*
+const newRow = (billett, tabell) => {
+    let tableBody = document.createElement('tbody');
+    let tableRow = document.createElement('tr');
+    billett.forEach(i => {
+        let cell = document.createElement('td');
+        cell.innerText = i;
+        tableRow.append(cell);
+    })
+    tableBody.append(tableRow);
+    tabell.append(tableBody);
+}
+/*
 function generateTableHead(){
-    let table = '<table>';
-    table += "<tr>" +
+    let table = "<tr>" +
         "<th>Film</th><th>Antall</th><th>Fornavn</th><th>Etternavn</th><th>Telefonnr</th><th>epost</th>"+
         "</tr>";
     return table;
 }
+
+ */
 
 function leggTilBilett(bilett){
     let table = "";
