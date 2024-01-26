@@ -76,7 +76,6 @@ function kjopBilett(){
 
 const header = ["Film", 'Antall', 'Fornavn', 'Etternavn', 'Telefonnr', 'Epost'];
 const creatTableHead= (tabell,bilett) => {
-    if(count === 0){
     let table = document.createElement('table');
     table.className = 'table';
 
@@ -93,14 +92,9 @@ const creatTableHead= (tabell,bilett) => {
     })
 
     tableHead.append(tableHeaderRow);
-    table.append(tableHead);
-
-    let tableBody = document.createElement('tbody');
-    tableBody.className = "table-Body";
-
-    tabell.append(table);
+    tabell.append(tableHead);
 }
-/*
+
 const newRow = (billett, tabell) => {
     let tableBody = document.createElement('tbody');
     let tableRow = document.createElement('tr');
