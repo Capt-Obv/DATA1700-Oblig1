@@ -2,32 +2,45 @@
 const biletter = [];
 function kjopBilett(){
     let error = false;
-    let inputFilm = $("#velgFilm").val();
+    let inputFilm = $("#velgFilm");
+    var option = inputFilm.options[inputFilm.selectedIndex].value;
+    inputFilm = inputFilm.val();
+
+    if(option === 0){
+        //må skirve feilmelding her!
+        error = true;
+    }
     let inputAntall = $("#antall").val();
+
     if(antall < 0 || isNaN(antall)){
         $("#antallError").html("Antall må være ett positivt nummer!").css('color','red');
         error = true;
     }
+
     let inputFornavn = $("#fornavn").val();
     if(inputFornavn.length === 0){
         $("#fornavnError").html("Må skrive noe inn i fornavn").css('color', 'red');
         error = true;
     }
+
     let inputEtternavn = $("#etternavn").val();
     if(inputEtternavn.length === 0){
         $("#etternavnError").html("Må skrive noe inn i etternavn").css('color', 'red');
         error = true;
     }
+
     let inputTelefonnr = $("#telefonnr").val();
     if(inputTelefonnr.length === 0){
         $("#telfonnrError").html("Må skrive noe i telefonnr").css('color', 'red');
         error = true
     }
+
     let inputEpost = $("#epost").val();
     if(inputEpost.length === 0){
         $("#epostError").html("Må skrive noe i epost").css('color', 'red');
         error = true;
     }
+
     if(error) return;
 
     let billet = {
@@ -39,4 +52,25 @@ function kjopBilett(){
         epost : inputEpost
     };
     biletter.push(billet);
+    tableContainer = $("alleBilletter");
+    tableContainer.innerHTML = generateTable();
+
+}
+
+function generateTableHead(){
+    let table = '<table>';
+    table += "<tr>" +
+        "<th>Film</th><th>Antall</th><th>Fornavn</th><th>Etternavn</th><th>Telefonnr</th><th>epost</th>"+
+        "</tr>";
+    return table;
+}
+
+function leggTilBilett(bilett){
+    let table = "";
+    biletter.forEach(bilett => {
+        table += "<tr>" +
+            "<td>${bilett.film}</td><td>${bilett.antall}</td><td>${bilett.fornavn}</td>"+
+            "<td>${bilett.etternavn}</td><td>${bilett.telefonnr}</td><td>${bilett.epost}</td>";
+    });
+    return table;
 }
