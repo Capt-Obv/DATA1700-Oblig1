@@ -3,15 +3,7 @@ const biletter = [];
 function kjopBilett(){
     let error = false;
     let inputFilm = $("#velgFilm").val();
-    //var option = inputFilm.options[inputFilm.selectedIndex].value;
-    //inputFilm = inputFilm.val();
-/*
-    if(option === 0){
-        //må skirve feilmelding her!
-        error = true;
-    }
 
- */
     let inputAntall = $("#antall").val();
 
     if(inputAntall <=0 || isNaN(inputAntall)){
@@ -42,13 +34,6 @@ function kjopBilett(){
         $("#epostError").html("Må skrive noe i epost").css('color', 'red');
         error = true;
     }
-    /*
-    let tableContainer = $("biletter");
-    //if(error) return;
-    if(biletter.length === 0){
-        tableContainer.innerHTML = generateTableHead();
-    }
-    */
 
     let billet = {
         film : inputFilm,
@@ -70,10 +55,15 @@ function kjopBilett(){
     else {
         newRow(input, tabell);
     }
-
-    //tableContainer.innerHTML = leggTilBilett(billet);
 }
 
+function slettBiletter(){
+    console.log(biletter);
+    const tableDiv = document.querySelector("div.bilettTabell");
+    while (tableDiv.firstChild) tableDiv.removeChild(tableDiv.firstChild);
+    biletter.forEach(biletter.pop());
+    console.log(biletter);
+}
 const header = ["Film", 'Antall', 'Fornavn', 'Etternavn', 'Telefonnr', 'Epost'];
 const creatTableHead= (tabell,bilett) => {
     let table = document.createElement('table');
@@ -106,22 +96,5 @@ const newRow = (billett, tabell) => {
     tableBody.append(tableRow);
     tabell.append(tableBody);
 }
-/*
-function generateTableHead(){
-    let table = "<tr>" +
-        "<th>Film</th><th>Antall</th><th>Fornavn</th><th>Etternavn</th><th>Telefonnr</th><th>epost</th>"+
-        "</tr>";
-    return table;
-}
 
- */
 
-function leggTilBilett(bilett){
-    let table = "";
-    biletter.forEach(bilett => {
-        table += "<tr>" +
-            "<td>${bilett.film}</td><td>${bilett.antall}</td><td>${bilett.fornavn}</td>"+
-            "<td>${bilett.etternavn}</td><td>${bilett.telefonnr}</td><td>${bilett.epost}</td>";
-    });
-    return table;
-}
