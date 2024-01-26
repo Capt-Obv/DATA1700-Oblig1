@@ -1,39 +1,37 @@
-const filmer = [];
-function velgFilm(){
-    let film = document.getElementById("velgFilm");
-    filmer.push(film);
-}
+
 const biletter = [];
 function kjopBilett(){
     let error = false;
-    let inputAntall = document.getElementById("antall");
-    if(isNaN(inputAntall) || antall < 0){
-        document.getElementById("antallError").innerText = "Antall må være ett positivt nummer!";
+    let inputFilm = $("#velgFilm").val();
+    let inputAntall = $("#antall").val();
+    if(antall < 0 || isNaN(antall)){
+        $("#antallError").html("Antall må være ett positivt nummer!").css('color','red');
         error = true;
     }
-    let inputFornavn = document.getElementById("fornavn");
+    let inputFornavn = $("#fornavn").val();
     if(inputFornavn.length === 0){
-        document.getElementById("fornavnError").innerText="Må skrive noe inn i fornavn";
+        $("#fornavnError").html("Må skrive noe inn i fornavn").css('color', 'red');
         error = true;
     }
-    let inputEtternavn = document.getElementById("etternavn");
+    let inputEtternavn = $("#etternavn").val();
     if(inputEtternavn.length === 0){
-        document.getElementById("etternavnError").innerText="Må skrive noe inn i etternavn";
+        $("#etternavnError").html("Må skrive noe inn i etternavn").css('color', 'red');
         error = true;
     }
-    let inputTelefonnr = document.getElementById("telefonnr");
+    let inputTelefonnr = $("#telefonnr").val();
     if(inputTelefonnr.length === 0){
-        document.getElementById("telfonnrError").innerText="Må skrive noe i telefonnr";
+        $("#telfonnrError").html("Må skrive noe i telefonnr").css('color', 'red');
         error = true
     }
-    let inputEpost = document.getElementById("epost");
+    let inputEpost = $("#epost").val();
     if(inputEpost.length === 0){
-        document.getElementById("epostError").innerText="Må skrive noe i epost";
+        $("#epostError").html("Må skrive noe i epost").css('color', 'red');
         error = true;
     }
     if(error) return;
 
     let billet = {
+        film : inputFilm,
         antall : inputAntall,
         fornavn : inputFornavn,
         etternavn : inputEtternavn,

@@ -3,18 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Bestille Kinobiller</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="bestilleKinobilletterScript.js" type="application/javascript"></script>
 </head>
 <body>
 <h1>Bestilling av kinobiletter</h1>
 <br /><br />
 Velg film:
-<select id="velgFilm" onchange="velgFilm();">
+<select id="velgFilm">
     <option>Barbie Movie</option>
     <option>Oppenheimer</option>
 </select>
 <br /><br />
-Antall: <input type="number" id="antall"><div id="antallError"></div>
+<table>
+    <tr>
+<td>Antall: <input type="number" id="antall"></td><td><div id="antallError"></div></td>
+    </tr>
+</table>
 <br/><br/>
 <table>
     <tr>
