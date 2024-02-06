@@ -56,9 +56,13 @@ function kjopBilett(){
  */
         //filmQ.val(this.defaultSelected);
         //filmQ.options("selected");
+        /*
         filmQ.prop('selected', function () {
             return this.defaultSelected;
-        })
+        });
+
+         */
+        filmQ.prop('selectedIndex', 0);
         antallQ.val("");
         fornavnQ.val("");
         etternavnQ.val("");
