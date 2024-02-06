@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5777bdee-6c37-4c04-9959-a63b4df569e8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/BestilleKinobilletter.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/BestilleKinobilletter.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/bestilleKinobilletterScript.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/bestilleKinobilletterScript.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -35,7 +33,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "Javascript",
+    "git-widget-placeholder": "input-Validation",
     "last_opened_file_path": "C:/Users/andre/Documents/DATA1700/Ukesoppgave1",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -61,7 +59,7 @@
       <option name="presentableId" value="Default" />
       <updated>1706175436773</updated>
       <workItem from="1706175437794" duration="1000" />
-      <workItem from="1707217150744" duration="3011000" />
+      <workItem from="1707217150744" duration="7232000" />
     </task>
     <servers />
   </component>

@@ -1,5 +1,6 @@
 let count = 0;
 const biletter = [];
+let error = false;
 function kjopBilett(){
     let error = false;
     const filmQ = $("#velgFilm");
@@ -24,58 +25,75 @@ function kjopBilett(){
     const epostQ = $("#epost")
     let inputEpost = epostQ.val();
 
-/*
-    if(inputAntall <=0 || isNaN(inputAntall)){
+    validateAntall(antallQ);
+    validateFornavn(fornavnQ);
+    validateEtternavn(etternavnQ);
+    validateTelefonnr(telefonQ);
+    validateEpost(epostQ);
+
+
+    if (error) {
+        return;
+    }
+    {
+        let billet = {
+            film: inputFilm,
+            antall: inputAntall,
+            fornavn: inputFornavn,
+            etternavn: inputEtternavn,
+            telefonnr: inputTelefonnr,
+            epost: inputEpost
+        };
+        biletter.push(billet);
+        let input = Object.values(billet);
+        const tabell = document.querySelector("div.bilettTabell");
+        if (count === 0) {
+            creatTableHead(tabell);
+            newRow(input, tabell);
+
+            count++;
+        } else {
+            newRow(input, tabell);
+        }
+    }
+    error = false;
+}
+function validateAntall(target){
+    let antall = parseInt(target.val());
+    if(Number.isNaN(antall) || antall<= 0){
         $("#antallError").html("Antall må være ett positivt nummer!").css('color','red');
         error = true;
     }
-
-
-    if(inputFornavn.length === 0){
+}
+function validateFornavn(target){
+    if(target.val().length === 0) {
         $("#fornavnError").html("Må skrive noe inn i fornavn").css('color', 'red');
         error = true;
     }
-
-
-
-    if(inputEtternavn.length === 0){
+}
+function validateEtternavn(target){
+    if(target.val().length === 0){
         $("#etternavnError").html("Må skrive noe inn i etternavn").css('color', 'red');
         error = true;
     }
-
-    if(inputTelefonnr.length === 0){
-        $("#telfonnrError").html("Må skrive noe i telefonnr").css('color', 'red');
-        error = true
+}
+function validateTelefonnr(target){
+    let regex = new RegExp(/^[+]*[0-9]{1,10}[-\s\./0-9]*$/);
+    let antall = target.val();
+    if(!antall.match(regex)){
+        $("#telfonnrError").html("Må skrive ett gyldig telefonnr").css('color', 'red');
+        error = true;
     }
+}
 
-    if(inputEpost.length === 0){
+function validateEpost(target){
+    let regex = new RegExp(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/);
+    let epost = target.val();
+    if(!epost.match(regex)) {
         $("#epostError").html("Må skrive noe i epost").css('color', 'red');
         error = true;
     }
-*/
-    let billet = {
-        film : inputFilm,
-        antall : inputAntall,
-        fornavn : inputFornavn,
-        etternavn : inputEtternavn,
-        telefonnr : inputTelefonnr,
-        epost : inputEpost
-    };
-    biletter.push(billet);
-    let input = Object.values(billet);
-    const tabell = document.querySelector("div.bilettTabell");
-    if(count === 0){
-        creatTableHead(tabell);
-        newRow(input, tabell);
-
-        count++;
-    }
-    else {
-        newRow(input, tabell);
-    }
-
 }
-
 function slettBiletter(){
     console.log(biletter);
     const tableDiv = document.querySelector("div.bilettTabell");
