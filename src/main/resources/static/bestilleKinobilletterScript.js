@@ -1,29 +1,32 @@
-let count = 0;
+let countBilett = 0;
 const biletter = [];
 let error = false;
 function kjopBilett(){
     let error = false;
     const filmQ = $("#velgFilm");
-    let inputFilm = filmQ.val();
-
+    //let inputFilm = filmQ.val();
+/*
     filmQ.prop("selected", function (){
         return this.defaultSelected;
     });
 
+ */
+
+
     const antallQ = $("#antall");
-    let inputAntall = antallQ.val();
+    //let inputAntall = antallQ.val();
 
     const fornavnQ = $("#fornavn");
-    let inputFornavn = fornavnQ.val();
+    //let inputFornavn = fornavnQ.val();
 
     const etternavnQ = $("#etternavn");
-    let inputEtternavn = etternavnQ.val();
+    //let inputEtternavn = etternavnQ.val();
 
     const telefonQ = $("#telefonnr");
-    let inputTelefonnr = telefonQ.val();
+    //let inputTelefonnr = telefonQ.val();
 
     const epostQ = $("#epost")
-    let inputEpost = epostQ.val();
+    //let inputEpost = epostQ.val();
 
     validateAntall(antallQ);
     validateFornavn(fornavnQ);
@@ -31,32 +34,37 @@ function kjopBilett(){
     validateTelefonnr(telefonQ);
     validateEpost(epostQ);
 
-
-    if (error) {
-        return;
-    }
-    {
+    if(!error) {
         let billet = {
-            film: inputFilm,
-            antall: inputAntall,
-            fornavn: inputFornavn,
-            etternavn: inputEtternavn,
-            telefonnr: inputTelefonnr,
-            epost: inputEpost
+            film: filmQ.val(),
+            antall: antallQ.val(),
+            fornavn: fornavnQ.val(),
+            etternavn: etternavnQ.val(),
+            telefonnr: telefonQ.val(),
+            epost: epostQ.val()
         };
         biletter.push(billet);
-        let input = Object.values(billet);
-        const tabell = document.querySelector("div.bilettTabell");
-        if (count === 0) {
-            creatTableHead(tabell);
-            newRow(input, tabell);
+        dynamicTable(billet);
+/*
+        filmQ.each(function (){
+            if(this.defaultSelected){
+                this.selected = true;
+                return false;
+            }
+        });
 
-            count++;
-        } else {
-            newRow(input, tabell);
-        }
+ */
+        //filmQ.val(this.defaultSelected);
+        //filmQ.options("selected");
+        filmQ.prop('selected', function () {
+            return this.defaultSelected;
+        })
+        antallQ.val("");
+        fornavnQ.val("");
+        etternavnQ.val("");
+        telefonQ.val("");
+        epostQ.val("");
     }
-    error = false;
 }
 function validateAntall(target){
     let antall = parseInt(target.val());
@@ -90,7 +98,7 @@ function validateEpost(target){
     let regex = new RegExp(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/);
     let epost = target.val();
     if(!epost.match(regex)) {
-        $("#epostError").html("Må skrive noe i epost").css('color', 'red');
+        $("#epostError").html("Må skrive en gyldig epost-addresse").css('color', 'red');
         error = true;
     }
 }
@@ -99,8 +107,20 @@ function slettBiletter(){
     const tableDiv = document.querySelector("div.bilettTabell");
     while (tableDiv.firstChild) tableDiv.removeChild(tableDiv.firstChild);
     biletter.length = 0;
-    //biletter.forEach(biletter.pop());
-    console.log(biletter);
+    countBilett = 0;
+}
+
+const dynamicTable= (bilett) => {
+    let input = Object.values(bilett);
+    const tabell = document.querySelector("div.bilettTabell");
+    if (countBilett === 0) {
+        creatTableHead(tabell);
+        newRow(input, tabell);
+
+        countBilett++;
+    } else {
+        newRow(input, tabell);
+    }
 }
 const header = ["Film", 'Antall', 'Fornavn', 'Etternavn', 'Telefonnr', 'Epost'];
 const creatTableHead= (tabell,bilett) => {
