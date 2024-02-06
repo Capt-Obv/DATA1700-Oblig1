@@ -2,39 +2,57 @@ let count = 0;
 const biletter = [];
 function kjopBilett(){
     let error = false;
-    let inputFilm = $("#velgFilm").val();
+    const filmQ = $("#velgFilm");
+    let inputFilm = filmQ.val();
 
-    let inputAntall = $("#antall").val();
+    filmQ.prop("selected", function (){
+        return this.defaultSelected;
+    });
 
+    const antallQ = $("#antall");
+    let inputAntall = antallQ.val();
+
+    const fornavnQ = $("#fornavn");
+    let inputFornavn = fornavnQ.val();
+
+    const etternavnQ = $("#etternavn");
+    let inputEtternavn = etternavnQ.val();
+
+    const telefonQ = $("#telefonnr");
+    let inputTelefonnr = telefonQ.val();
+
+    const epostQ = $("#epost")
+    let inputEpost = epostQ.val();
+
+/*
     if(inputAntall <=0 || isNaN(inputAntall)){
         $("#antallError").html("Antall må være ett positivt nummer!").css('color','red');
         error = true;
     }
 
-    let inputFornavn = $("#fornavn").val();
+
     if(inputFornavn.length === 0){
         $("#fornavnError").html("Må skrive noe inn i fornavn").css('color', 'red');
         error = true;
     }
 
-    let inputEtternavn = $("#etternavn").val();
+
+
     if(inputEtternavn.length === 0){
         $("#etternavnError").html("Må skrive noe inn i etternavn").css('color', 'red');
         error = true;
     }
 
-    let inputTelefonnr = $("#telefonnr").val();
     if(inputTelefonnr.length === 0){
         $("#telfonnrError").html("Må skrive noe i telefonnr").css('color', 'red');
         error = true
     }
 
-    let inputEpost = $("#epost").val();
     if(inputEpost.length === 0){
         $("#epostError").html("Må skrive noe i epost").css('color', 'red');
         error = true;
     }
-
+*/
     let billet = {
         film : inputFilm,
         antall : inputAntall,
@@ -55,13 +73,15 @@ function kjopBilett(){
     else {
         newRow(input, tabell);
     }
+
 }
 
 function slettBiletter(){
     console.log(biletter);
     const tableDiv = document.querySelector("div.bilettTabell");
     while (tableDiv.firstChild) tableDiv.removeChild(tableDiv.firstChild);
-    biletter.forEach(biletter.pop());
+    biletter.length = 0;
+    //biletter.forEach(biletter.pop());
     console.log(biletter);
 }
 const header = ["Film", 'Antall', 'Fornavn', 'Etternavn', 'Telefonnr', 'Epost'];
