@@ -1,11 +1,11 @@
-Oblig 2
+Oblig 1
 =======
-OsloMet brukernavn: 
+OsloMet brukernavn: sofje9342@oslomet.no
 
-GitHub brukernavn: 
+GitHub brukernavn: Capt-Obv 
 
-Github repo URL: 
+Github repo URL: https://github.com/Capt-Obv/DATA1700-Oblig1.git
 
-Fullt navn: 
+Fullt navn: Solveig Andrea Devold Fjeld
 
 Kort beskrivelse av applikasjon (5-10 setninger):
