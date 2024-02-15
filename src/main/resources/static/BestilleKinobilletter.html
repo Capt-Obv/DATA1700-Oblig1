@@ -10,15 +10,16 @@
 <h1>Bestilling av kinobiletter</h1>
 <br /><br />
 Velg film:
-<select id="velgFilm">
-    <option value="0" selected="selected" disabled hidden>Velg film her</option>
-    <option>Barbie Movie</option>
-    <option>Oppenheimer</option>
-</select>
+<select id="velgFilm" name="film">
+    <option value='' selected="selected">Velg film her</option>
+    <option value="Barbie Movie">Barbie Movie</option>
+    <option value="Oppenheimer">Oppenheimer</option>
+</select><div id="filmError"></div>
 <br /><br />
 <table>
     <tr>
-<td>Antall: <input type="text" id="antall" size="1"></td><td><div id="antallError"></div></td>
+<td>Antall: <input type="text" id="antall" size="2" maxlength="2" style="width: 20%"></td>
+        <td><div id="antallError"></div></td>
     </tr>
 </table>
 <br/><br/>

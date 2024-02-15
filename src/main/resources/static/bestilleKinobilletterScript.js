@@ -1,14 +1,14 @@
 //The array that billetter get saved
 const biletter = [];
-//boolean variable to keep track if a validation have gone bad
 let error = false;
-
 //function to hide the table on window load
 $(document).ready(function () {
     $('#alleBilletter').hide();
 });
 //function to save the ticket validate and display
 function kjopBilett(){
+    error = false;
+    resetError();
 
     const filmQ = $("#velgFilm");
 
@@ -22,6 +22,7 @@ function kjopBilett(){
 
     const epostQ = $("#epost")
 
+    validateFilm(filmQ);
     validateAntall(antallQ);
     validateFornavn(fornavnQ);
     validateEtternavn(etternavnQ);
@@ -29,6 +30,7 @@ function kjopBilett(){
     validateEpost(epostQ);
 
     if(!error) {
+        resetError();
         let billet = {
             film: filmQ.val(),
             antall: antallQ.val(),
@@ -63,6 +65,21 @@ function newRow()   {
     });
     outputStr += '</tr>';
     tbody.append(outputStr);
+}
+
+function resetError()   {
+    $('#filmError').html('');
+    $('#antallError').html('');
+    $('#fornavnError').html('');
+    $('#etternavnError').html('');
+    $('#telfonnrError').html('');
+    $('#epostError').html('');
+}
+function validateFilm(target) {
+    if(target.val() === ''){
+        $("#filmError").html('Må velge en film!').css('color', 'red');
+        error = true;
+    }
 }
 function validateAntall(target){
     let antall = parseInt(target.val());
