@@ -1,17 +1,13 @@
 let countBilett = 0;
 const biletter = [];
 let error = false;
+
+$(document).ready(function () {
+    $('#alleBilletter').hide();
+});
 function kjopBilett(){
 
     const filmQ = $("#velgFilm");
-    //let inputFilm = filmQ.val();
-/*
-    filmQ.prop("selected", function (){
-        return this.defaultSelected;
-    });
-
- */
-
 
     const antallQ = $("#antall");
     //let inputAntall = antallQ.val();
@@ -44,24 +40,21 @@ function kjopBilett(){
             epost: epostQ.val()
         };
         biletter.push(billet);
-        dynamicTable(billet);
-/*
-        filmQ.each(function (){
-            if(this.defaultSelected){
-                this.selected = true;
-                return false;
-            }
-        });
+        //dynamicTable(billet);
 
- */
-        //filmQ.val(this.defaultSelected);
-        //filmQ.options("selected");
-        /*
-        filmQ.prop('selected', function () {
-            return this.defaultSelected;
-        });
+        if(biletter.length >= 1){
+            $('#alleBilletter').show();
+            let tbody = $('#billettTable > tbody');
 
-         */
+            let outputStr = '<tr>';
+            let ouput = Object.values(biletter[biletter.length -1]);
+            ouput.forEach(i => {
+                outputStr += '<td>'+i.toString()+ '</td>';
+            });
+            outputStr += '</tr>';
+            tbody.append(outputStr);
+        }
+
         filmQ.prop('selectedIndex', 0);
         antallQ.val("");
         fornavnQ.val("");
