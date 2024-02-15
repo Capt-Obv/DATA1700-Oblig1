@@ -2,7 +2,7 @@ let countBilett = 0;
 const biletter = [];
 let error = false;
 function kjopBilett(){
-    let error = false;
+
     const filmQ = $("#velgFilm");
     //let inputFilm = filmQ.val();
 /*
@@ -114,10 +114,10 @@ function slettBiletter(){
     countBilett = 0;
 }
 
-const dynamicTable= (bilett) => {
-    let input = Object.values(bilett);
+const dynamicTable= () => {
+    let input = Object.values(biletter[biletter.length -1]);
     const tabell = document.querySelector("div.bilettTabell");
-    if (countBilett === 0) {
+    if (biletter.length === 1) {
         creatTableHead(tabell);
         newRow(input, tabell);
 
