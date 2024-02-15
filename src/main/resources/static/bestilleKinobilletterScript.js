@@ -1,28 +1,26 @@
-let countBilett = 0;
+//The array that billetter get saved
 const biletter = [];
+//boolean variable to keep track if a validation have gone bad
 let error = false;
 
+//function to hide the table on window load
 $(document).ready(function () {
     $('#alleBilletter').hide();
 });
+//function to save the ticket validate and display
 function kjopBilett(){
 
     const filmQ = $("#velgFilm");
 
     const antallQ = $("#antall");
-    //let inputAntall = antallQ.val();
 
     const fornavnQ = $("#fornavn");
-    //let inputFornavn = fornavnQ.val();
 
     const etternavnQ = $("#etternavn");
-    //let inputEtternavn = etternavnQ.val();
 
     const telefonQ = $("#telefonnr");
-    //let inputTelefonnr = telefonQ.val();
 
     const epostQ = $("#epost")
-    //let inputEpost = epostQ.val();
 
     validateAntall(antallQ);
     validateFornavn(fornavnQ);
@@ -40,19 +38,10 @@ function kjopBilett(){
             epost: epostQ.val()
         };
         biletter.push(billet);
-        //dynamicTable(billet);
 
         if(biletter.length >= 1){
             $('#alleBilletter').show();
-            let tbody = $('#billettTable > tbody');
-
-            let outputStr = '<tr>';
-            let ouput = Object.values(biletter[biletter.length -1]);
-            ouput.forEach(i => {
-                outputStr += '<td>'+i.toString()+ '</td>';
-            });
-            outputStr += '</tr>';
-            tbody.append(outputStr);
+            newRow();
         }
 
         filmQ.prop('selectedIndex', 0);
@@ -62,6 +51,18 @@ function kjopBilett(){
         telefonQ.val("");
         epostQ.val("");
     }
+}
+//function to add a new row to the table
+function newRow()   {
+    let tbody = $('#billettTable > tbody');
+
+    let outputStr = '<tr>';
+    let ouput = Object.values(biletter[biletter.length -1]);
+    ouput.forEach(i => {
+        outputStr += '<td>'+i.toString()+ '</td>';
+    });
+    outputStr += '</tr>';
+    tbody.append(outputStr);
 }
 function validateAntall(target){
     let antall = parseInt(target.val());
@@ -100,56 +101,14 @@ function validateEpost(target){
     }
 }
 function slettBiletter(){
-    console.log(biletter);
-    const tableDiv = document.querySelector("div.bilettTabell");
-    while (tableDiv.firstChild) tableDiv.removeChild(tableDiv.firstChild);
+    //first i remove all tablerows except the head
+    $('#billettTable').find('tr:gt(0)').remove();
+    //hide the head row
+    $('#alleBilletter').hide();
+    //delete the biletter array
     biletter.length = 0;
-    countBilett = 0;
 }
 
-const dynamicTable= () => {
-    let input = Object.values(biletter[biletter.length -1]);
-    const tabell = document.querySelector("div.bilettTabell");
-    if (biletter.length === 1) {
-        creatTableHead(tabell);
-        newRow(input, tabell);
 
-        countBilett++;
-    } else {
-        newRow(input, tabell);
-    }
-}
-const header = ["Film", 'Antall', 'Fornavn', 'Etternavn', 'Telefonnr', 'Epost'];
-const creatTableHead= (tabell,bilett) => {
-    let table = document.createElement('table');
-    table.className = 'table';
-
-    let tableHead = document.createElement('thead');
-    tableHead.className = 'tableHead';
-
-    let tableHeaderRow = document.createElement('tr');
-    tableHeaderRow.className = 'tableHeaderRow';
-
-    header.forEach(header => {
-        let scoreHeader = document.createElement('th');
-        scoreHeader.innerText = header;
-        tableHeaderRow.append(scoreHeader);
-    })
-
-    tableHead.append(tableHeaderRow);
-    tabell.append(tableHead);
-}
-
-const newRow = (billett, tabell) => {
-    let tableBody = document.createElement('tbody');
-    let tableRow = document.createElement('tr');
-    billett.forEach(i => {
-        let cell = document.createElement('td');
-        cell.innerText = i;
-        tableRow.append(cell);
-    })
-    tableBody.append(tableRow);
-    tabell.append(tableBody);
-}
 
 
