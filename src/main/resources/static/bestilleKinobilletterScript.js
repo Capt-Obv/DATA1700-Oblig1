@@ -1,12 +1,12 @@
 //The array that billetter get saved
-const biletter = [];
+const billetter = [];
 let error = false;
 //function to hide the table on window load
 $(document).ready(function () {
     $('#alleBilletter').hide();
 });
 //function to save the ticket validate and display
-function kjopBilett(){
+function kjopBillett(){
     //updates the boolean value and the error messages everytime kjøp billett is pressed
     error = false;
     resetError();
@@ -34,7 +34,7 @@ function kjopBilett(){
     //Remove the error messages since no error
     resetError();
     //make object
-    let billet = {
+    let billett = {
         film: filmQ.val(),
         antall: antallQ.val(),
         fornavn: fornavnQ.val(),
@@ -43,9 +43,9 @@ function kjopBilett(){
         epost: epostQ.val()
     };
     //push object to array
-    biletter.push(billet);
+    billetter.push(billett);
     //if array is bigger than 0 show the table and add a new row.
-    if (biletter.length >= 1) {
+    if (billetter.length >= 1) {
         $('#alleBilletter').show();
         newRow();
     }
@@ -65,9 +65,9 @@ function newRow()   {
     //making the string to append to the table
     let outputStr = '<tr>';
     //getting the values of the last element of the array
-    let ouput = Object.values(biletter[biletter.length -1]);
+    let output = Object.values(billetter[billetter.length -1]);
     //loop through the values and add it to the string
-    ouput.forEach(i => {
+    output.forEach(i => {
         outputStr += '<td>'+i.toString()+ '</td>';
     });
     outputStr += '</tr>';
@@ -118,7 +118,7 @@ function validateTelefonnr(target){
     let regex = new RegExp(/^[0-9]{8}$/);
     let antall = target.val();
     if(!antall.match(regex)){
-        $("#telfonnrError").html("Må skrive ett gyldig telefonnr").css('color', 'red');
+        $("#telfonnrError").html("Må skrive ett gyldig telefonnr, 8 tall").css('color', 'red');
         error = true;
     }
 }
@@ -132,18 +132,18 @@ function validateEpost(target){
     let regex = new RegExp(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/);
     let epost = target.val();
     if(!epost.match(regex)) {
-        $("#epostError").html("Må skrive en gyldig epost-addresse").css('color', 'red');
+        $("#epostError").html("Må skrive en gyldig epost-addresse: a@a.com").css('color', 'red');
         error = true;
     }
 }
 //function to delete all the billetter
-function slettBiletter(){
+function slettBilletter(){
     //first i remove all tablerows except the head
     $('#billettTable').find('tr:gt(0)').remove();
     //hide the head row
     $('#alleBilletter').hide();
     //delete the biletter array
-    biletter.length = 0;
+    billetter.length = 0;
 }
 
 
