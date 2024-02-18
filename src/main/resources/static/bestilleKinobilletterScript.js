@@ -124,11 +124,13 @@ function validateTelefonnr(target){
 }
 //function to validate epost
 function validateEpost(target){
+    /*
     //using regexp here to validate
     //[\w-\.] means matches any word character, and also allow - and .
     //+@ it has to contain one @
     //([\w-]+\.) means matches any word character, and also -. And it has to contain one .
     //then +[\w-]{2,4} after the dot it has to match 2-4 word character wich is the country code.
+     */
     let regex = new RegExp(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/);
     let epost = target.val();
     if(!epost.match(regex)) {

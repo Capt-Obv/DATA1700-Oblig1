@@ -9,6 +9,12 @@
 <body>
 <h1>Bestilling av kinobiletter</h1>
 <br /><br />
+<!--
+The form where all the input is gattered. All the div's named idError is where the error mesaage if the
+input validation failed
+-->
+<!-- I tried to use the form tag but then the table didn't work, I think my solution works well
+enough now. But next time i will build the app with the form tag n mind. -->
 Velg film:
 <select id="velgFilm" name="film">
     <option value='' selected="selected">Velg film her</option>
@@ -19,11 +25,15 @@ Velg film:
 <br /><br />
 <table>
     <tr>
+        <!-- For antall I choose to use maxlength="2" so that max number of tickets is 99 -->
 <td>Antall: <input type="text" id="antall" maxlength="2" style="width: 10%"></td>
         <td><div id="antallError"></div></td>
     </tr>
 </table>
 <br/><br/>
+    <!--
+    To input the persnoalia i used a table so that the everything aligns properly.
+    -->
 <table>
     <tr>
         <td>Fornavn</td><td><input type="text" id="fornavn"></td><td><div id="fornavnError"></div> </td>
@@ -38,9 +48,12 @@ Velg film:
         <td>Epost</td><td><input type="email" id="epost"></td><td><div id="epostError"></div> </td>
     </tr>
 </table>
+    <!-- The button that calls the function, I tried to use the sybmit button but i struggled,
+    so maby i can use that naxt time but this works good enough -->
 <button value="Kjøp bilett" onclick="kjopBillett();" id="bilett">Kjøp billett</button>
 <br/><br />
-
+<!-- Here is the table that shows all the tickets, I use JQUERY to hide the table head if the
+ticket array is empty. I use JQuery to append rows to the tbody when tickets are purchased -->
 <h3>Alle biletter</h3>
 <div id="alleBilletter">
     <table id="billettTable">
@@ -55,6 +68,7 @@ Velg film:
     </table>
 </div>
 <br/><br/>
+<!-- The button that calls the function that empty the array and empty the table. -->
 <button value="Slett alle biletter" onclick="slettBilletter();" id="slett">Slett alle biletter</button>
 </body>
 </html>
