@@ -5,7 +5,7 @@ let error = false;
 $(document).ready(function () {
     $('#alleBilletter').hide();
 });
-//function to save the ticket validate and display
+//function to save the ticket, validate and display
 function kjopBillett(){
     //updates the boolean value and the error messages everytime kjøp billett is pressed
     error = false;
@@ -19,7 +19,7 @@ function kjopBillett(){
     const telefonQ = $("#telefonnr");
     const epostQ = $("#epost")
 
-    //Validating every input and give error messages if wrong input.
+    //Validating every input and give error messages if validation failed
     validateFilm(filmQ);
     validateAntall(antallQ);
     validateFornavn(fornavnQ);
@@ -142,7 +142,7 @@ function slettBilletter(){
     $('#billettTable').find('tr:gt(0)').remove();
     //hide the head row
     $('#alleBilletter').hide();
-    //delete the biletter array
+    //delete the billetter array
     billetter.length = 0;
 }
 
